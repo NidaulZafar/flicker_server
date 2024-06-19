@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("/api/images", async (req, res) => {
+app.get("/api/photos", async (req, res) => {
   console.log("req.query");
   const { tags } = req.query;
   const url = `https://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1${
