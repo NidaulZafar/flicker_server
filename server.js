@@ -8,11 +8,10 @@ const PORT = process.env.PORT || 8000;
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Server is up and running!");
 });
 
 app.get("/api/photos", async (req, res) => {
-  console.log("req.query");
   const { tags } = req.query;
   const url = `https://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1${
     tags ? `&tags=${tags}` : ""
@@ -21,7 +20,6 @@ app.get("/api/photos", async (req, res) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
